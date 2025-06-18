@@ -16,6 +16,4 @@ Este programa implementa y compara distintos algoritmos de búsqueda y ordenamie
 1. Asegúrate de tener Python instalado (versión 3.x).
 2. Descarga el archivo `pruebasTP.py`.
 3. Ejecuta el programa desde la terminal con:
-
-   ```sh
    python pruebasTP.py

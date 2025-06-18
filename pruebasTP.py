@@ -56,8 +56,6 @@ def insertion_sort(lista):
     Ventaja: eficiente en listas pequeñas o casi ordenadas.
     Desventaja: ineficiente en listas grandes.
     """
-    
-    
     for i in range(1, len(lista)):
         clave = lista[i]
         j = i - 1
@@ -171,15 +169,15 @@ def pruebas():
     Muestra los resultados de las busquedas y ordenamientos.
     """
     
-    # print("Pruebas con listas pequeñas (10 elementos):")
+    print("Pruebas con listas pequeñas (10 elementos):")
     
     # random.sample crea una lista de 10 numeros aleatorios distintos entre 0 y 99
     lista_pequena = random.sample(range(100), 10)
     objetivo = lista_pequena[5]
     
-    # llamamos a comparar busquedas y le pasamos la lista de 20 elementos unicos y el objetivo
-    # comparar_busquedas(lista_pequena, objetivo)
-    # comparar_ordenamientos(lista_pequena)
+    # llamamos a comparar busquedas y le pasamos la lista de 10 elementos unicos y el objetivo
+    comparar_busquedas(lista_pequena, objetivo)
+    comparar_ordenamientos(lista_pequena)
 
     print("\nPruebas con listas grandes (1000 elementos):")
     
