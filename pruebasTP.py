@@ -3,24 +3,24 @@ import timeit
 
 def busqueda_lineal(lista, objetivo):
     """
-    Realiza una búsqueda lineal en la lista.
-    Recorre elemento por elemento hasta encontrar el objetivo.
-    Ventaja: funciona en listas desordenadas.
-    Desventaja: ineficiente para listas grandes.
+    Recorre la lista desde el primer elemento hasta el ultimo.
+    Si encuentra el elemento buscado, devuelve su indice.
+    Si no lo encuentra, devuelve -1.
     """
-    for i, elemento in enumerate(lista):
-        if elemento == objetivo:
+    for i in range(len(lista)):
+        if lista[i] == objetivo:
             return i
     return -1
 
 def busqueda_binaria(lista, objetivo):
     """
-    Realiza una búsqueda binaria en una lista ordenada.
+    Realiza una busqueda binaria en una lista ordenada.
     Divide la lista en mitades hasta encontrar el objetivo.
-    Ventaja: muy rápida en listas grandes ordenadas.
+    Ventaja: muy rapida en listas grandes ordenadas.
     Desventaja: requiere lista ordenada.
     """
     izquierda = 0
+    # capturamos el ultimo indice en derecha
     derecha = len(lista) - 1
     while izquierda <= derecha:
         medio = (izquierda + derecha) // 2
@@ -35,10 +35,11 @@ def busqueda_binaria(lista, objetivo):
 def bubble_sort(lista):
     """
     Ordena la lista usando el algoritmo de burbuja.
-    Compara elementos adyacentes y los intercambia si están en el orden incorrecto.
-    Ventaja: fácil de implementar.
+    Compara elementos adyacentes y los intercambia si estan en el orden incorrecto.
+    Ventaja: facil de implementar.
     Desventaja: muy lento para listas grandes.
     """
+    
     n = len(lista)
     for i in range(n):
         for j in range(0, n - i - 1):
@@ -55,6 +56,8 @@ def insertion_sort(lista):
     Ventaja: eficiente en listas pequeñas o casi ordenadas.
     Desventaja: ineficiente en listas grandes.
     """
+    
+    
     for i in range(1, len(lista)):
         clave = lista[i]
         j = i - 1
@@ -68,7 +71,7 @@ def selection_sort(lista):
     """
     Ordena la lista usando el algoritmo de selección.
     Selecciona el mínimo de la lista y lo coloca en su lugar, iterativamente.
-    Ventaja: fácil de entender.
+    Ventaja: facil de entender.
     Desventaja: lento para listas largas.
     """
     n = len(lista)
@@ -82,10 +85,8 @@ def selection_sort(lista):
 
 def quicksort(lista):
     """
-    Ordena la lista usando el algoritmo quicksort (divide y conquista).
+    Ordena la lista usando el algoritmo quicksort.
     Elige un pivote y divide la lista en dos sublistas recursivamente.
-    Ventaja: muy eficiente para listas grandes.
-    Desventaja: rendimiento variable dependiendo del pivote.
     """
     if len(lista) <= 1:
         return lista
@@ -98,31 +99,67 @@ def quicksort(lista):
 
 def comparar_busquedas(lista, objetivo):
     """
-    Compara los tiempos de ejecución de búsqueda lineal y binaria.
+    Compara los tiempos de ejecucion de busqueda lineal y binaria.
     """
+    #Ordenamos la lista usando el metodo sorted
     lista_ordenada = sorted(lista)
+    
+    print(f"\nEjecutando Búsqueda Lineal:")
+    print(f"Lista enviada a búsqueda lineal: {lista}")
+    indice_lineal = busqueda_lineal(lista, objetivo)
+    print(f"Resultado de búsqueda lineal (índice): Objetivo {objetivo} encontrado en el indice {indice_lineal}")
 
-    tiempo_lineal = timeit.timeit(lambda: busqueda_lineal(lista, objetivo), number=100)
-    tiempo_binaria = timeit.timeit(lambda: busqueda_binaria(lista_ordenada, objetivo), number=100)
+    print(f"Ejecutando Búsqueda Binaria:")
+    print(f"Lista enviada a búsqueda binaria: {lista_ordenada}")
+    indice_binaria = busqueda_binaria(lista_ordenada, objetivo)
+    print(f"Resultado de búsqueda binaria (índice): Objetivo {objetivo} encontrado en el indice  {indice_binaria}")
 
-    print(f"Búsqueda lineal: {tiempo_lineal:.6f} segundos (100 elementos)")
-    print(f"Búsqueda binaria: {tiempo_binaria:.6f} segundos (100 elementos)")
+    #Le enviamos a timeit una funcion anonima(lambda) 
+    #para que mida el tiempo que tarda en ejecutarse la funcion de busqueda lineal y binaria.
+    #El segundo parametro de timeit es para que ejecuta la funciona anonima una X cantidad de veces.
+    tiempo_lineal = timeit.timeit(lambda: busqueda_lineal(lista, objetivo), number=1)
+    tiempo_binaria = timeit.timeit(lambda: busqueda_binaria(lista_ordenada, objetivo), number=1)
+    
+    print(f"Algoritmo de busqueda comparacion")
+    print(f"Búsqueda lineal: {tiempo_lineal:.6f} segundos")
+    print(f"Búsqueda binaria: {tiempo_binaria:.6f} segundos\n")
 
 def comparar_ordenamientos(lista):
     """
-    Compara los tiempos de ejecución de los algoritmos de ordenamiento.
+    Compara los tiempos de ejecucion de los algoritmos de ordenamiento.
     Usa timeit para medir el tiempo de cada algoritmo.
     """
     lista1 = lista.copy()
     lista2 = lista.copy()
     lista3 = lista.copy()
     lista4 = lista.copy()
+    
+    print(f"Ejecutando Bubble Sort:")
+    print(f"Lista enviada a bubbleSort: {lista1}")
+    lista_ordenada_1 = bubble_sort(lista1)
+    print(f"Lista ordenada con bubbleSort: {lista_ordenada_1}")
+    
+    print(f"Ejecutando Insertion Sort")
+    print(f"Lista enviada a Insertion Sort: {lista2}")
+    lista_ordenada_2 = insertion_sort(lista2)
+    print(f"Lista ordenada con Insertion Sort: {lista_ordenada_2}")
+    
+    print(f"Ejecutando Selection Sort")
+    print(f"Lista enviada a Selection Sort: {lista3}")
+    lista_ordenada_3 = selection_sort(lista3)
+    print(f"Lista ordenada con Selection Sort: {lista_ordenada_3}")
+    
+    print(f"Ejecutando Quicksort")
+    print(f"Lista enviada a Quicksort: {lista4}")
+    lista_ordenada_4 = quicksort(lista4)
+    print(f"Lista ordenada con Quicksort: {lista_ordenada_4}")
 
     tiempo_bubble = timeit.timeit(lambda: bubble_sort(lista1), number=1)
     tiempo_insertion = timeit.timeit(lambda: insertion_sort(lista2), number=1)
     tiempo_selection = timeit.timeit(lambda: selection_sort(lista3), number=1)
     tiempo_quick = timeit.timeit(lambda: quicksort(lista4), number=1)
-
+    
+    print(f"Algoritmos de ordenamiento comparacion")
     print(f"Bubble Sort: {tiempo_bubble:.6f} segundos")
     print(f"Insertion Sort: {tiempo_insertion:.6f} segundos")
     print(f"Selection Sort: {tiempo_selection:.6f} segundos")
@@ -131,17 +168,25 @@ def comparar_ordenamientos(lista):
 def pruebas():
     """
     Realiza pruebas con listas pequeñas (20 elementos) y grandes (1000 elementos).
-    Muestra los resultados de las búsquedas y ordenamientos.
+    Muestra los resultados de las busquedas y ordenamientos.
     """
-    print("Pruebas con listas pequeñas (20 elementos):")
-    lista_pequena = random.sample(range(100), 20)
-    objetivo = lista_pequena[10]
-    comparar_busquedas(lista_pequena, objetivo)
-    comparar_ordenamientos(lista_pequena)
+    
+    # print("Pruebas con listas pequeñas (10 elementos):")
+    
+    # random.sample crea una lista de 10 numeros aleatorios distintos entre 0 y 99
+    lista_pequena = random.sample(range(100), 10)
+    objetivo = lista_pequena[5]
+    
+    # llamamos a comparar busquedas y le pasamos la lista de 20 elementos unicos y el objetivo
+    # comparar_busquedas(lista_pequena, objetivo)
+    # comparar_ordenamientos(lista_pequena)
 
     print("\nPruebas con listas grandes (1000 elementos):")
+    
     lista_grande = random.sample(range(10000), 1000)
-
+    objetivo_grande = lista_grande[100]
+    
+    comparar_busquedas(lista_grande, objetivo_grande)
     comparar_ordenamientos(lista_grande)
 
 if __name__ == "__main__":
