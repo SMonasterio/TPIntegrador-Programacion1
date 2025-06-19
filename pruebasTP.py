@@ -118,7 +118,7 @@ def comparar_busquedas(lista, objetivo):
     tiempo_lineal = timeit.timeit(lambda: busqueda_lineal(lista, objetivo), number=1)
     tiempo_binaria = timeit.timeit(lambda: busqueda_binaria(lista_ordenada, objetivo), number=1)
     
-    print(f"Algoritmo de busqueda comparacion")
+    print(f"\nAlgoritmo de busqueda comparacion")
     print(f"Búsqueda lineal: {tiempo_lineal:.6f} segundos")
     print(f"Búsqueda binaria: {tiempo_binaria:.6f} segundos\n")
 
@@ -157,7 +157,7 @@ def comparar_ordenamientos(lista):
     tiempo_selection = timeit.timeit(lambda: selection_sort(lista3), number=1)
     tiempo_quick = timeit.timeit(lambda: quicksort(lista4), number=1)
     
-    print(f"Algoritmos de ordenamiento comparacion")
+    print(f"\nAlgoritmos de ordenamiento comparacion")
     print(f"Bubble Sort: {tiempo_bubble:.6f} segundos")
     print(f"Insertion Sort: {tiempo_insertion:.6f} segundos")
     print(f"Selection Sort: {tiempo_selection:.6f} segundos")
@@ -176,16 +176,16 @@ def pruebas():
     objetivo = lista_pequena[5]
     
     # llamamos a comparar busquedas y le pasamos la lista de 10 elementos unicos y el objetivo
-    comparar_busquedas(lista_pequena, objetivo)
+    # comparar_busquedas(lista_pequena, objetivo)
     comparar_ordenamientos(lista_pequena)
 
-    print("\nPruebas con listas grandes (1000 elementos):")
+    # print("\nPruebas con listas grandes (1000 elementos):")
     
-    lista_grande = random.sample(range(10000), 1000)
-    objetivo_grande = lista_grande[100]
+    # lista_grande = random.sample(range(10000), 1000)
+    # objetivo_grande = lista_grande[100]
     
-    comparar_busquedas(lista_grande, objetivo_grande)
-    comparar_ordenamientos(lista_grande)
+    # comparar_busquedas(lista_grande, objetivo_grande)
+    # comparar_ordenamientos(lista_grande)
 
 if __name__ == "__main__":
     pruebas()
