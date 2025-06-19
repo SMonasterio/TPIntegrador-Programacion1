@@ -20,7 +20,6 @@ def busqueda_binaria(lista, objetivo):
     Desventaja: requiere lista ordenada.
     """
     izquierda = 0
-    # capturamos el ultimo indice en derecha
     derecha = len(lista) - 1
     while izquierda <= derecha:
         medio = (izquierda + derecha) // 2
@@ -176,16 +175,16 @@ def pruebas():
     objetivo = lista_pequena[5]
     
     # llamamos a comparar busquedas y le pasamos la lista de 10 elementos unicos y el objetivo
-    # comparar_busquedas(lista_pequena, objetivo)
+    comparar_busquedas(lista_pequena, objetivo)
     comparar_ordenamientos(lista_pequena)
 
-    # print("\nPruebas con listas grandes (1000 elementos):")
+    print("\nPruebas con listas grandes (1000 elementos):")
     
-    # lista_grande = random.sample(range(10000), 1000)
-    # objetivo_grande = lista_grande[100]
+    lista_grande = random.sample(range(10000), 1000)
+    objetivo_grande = lista_grande[100]
     
-    # comparar_busquedas(lista_grande, objetivo_grande)
-    # comparar_ordenamientos(lista_grande)
+    comparar_busquedas(lista_grande, objetivo_grande)
+    comparar_ordenamientos(lista_grande)
 
 if __name__ == "__main__":
     pruebas()
